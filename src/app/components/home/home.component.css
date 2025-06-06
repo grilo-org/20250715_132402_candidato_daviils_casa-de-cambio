@@ -1,0 +1,12 @@
+.gsap-father {
+    position: relative;
+}
+
+.gsap-item {
+    position: absolute;
+    top: 30vh;
+    left: 10vw;
+    background-color: aqua;
+    width: 30px;
+    height: 30px;
+}

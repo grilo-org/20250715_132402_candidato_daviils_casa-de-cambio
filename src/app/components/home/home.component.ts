@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { gsap } from "gsap"
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    gsap.to(".gsap-item", { x: -100, y: -100, duration: 1 });
   }
 
 }

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './main.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {MainComponent} from './main.component';
 
 const routes: Routes = [
   {
@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: '',
         loadComponent: () => import('../../components/home/home.component').then(m => m.HomeComponent)
+      },
+      {
+        path: 'pedido',
+        loadComponent: () => import('../../components/order/order.component').then(m => m.OrderComponent)
       },
     ]
   }

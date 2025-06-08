@@ -1,7 +1,87 @@
-<div class="flex flex-col justify-center items-center h-screen">
-  <h1 class="text-6xl mb-5 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-    Casa de Câmbio (Pedido)
+<div class="min-h-screen max-w-[1280px] w-full ml-auto mr-auto pt-20">
+  <h1 class="text-6xl mb-10 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+    Pedido
   </h1>
-  <img src="/images/money.png" class="my-10 h-[250px]" alt="money">
-<!--  <button [routerLink]="'pedido'" mat-flat-button>Iniciar Pedidos</button>-->
+
+  <div class="flex gap-[15px]">
+    <div class="flex flex-col gap-[5px]">
+      <button class="text-right p-1 border"
+              [ngClass]="{'bg-primary text-white':indexOrder == i}"
+              *ngFor="let x of coins,let  i = index"
+              (click)="indexOrder = i">{{ x.nome }}
+      </button>
+    </div>
+    <div class="flex-1">
+      <ng-container *ngFor="let order of orders,let i = index">
+        @if (i == indexOrder) {
+          <table class="w-full border-collapse border border-primary">
+            <thead>
+            <tr>
+              <td class="border  border-primary text-center" colspan="4">
+                {{ order.nome }} - Cotação: {{ order.cotacao }}
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-primary text-center">Cédula/Face</td>
+              <td class="border border-primary text-center">Qtde</td>
+              <td class="border border-primary text-center">Total</td>
+              <td class="border border-primary text-center">Total R$</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <ng-container *ngFor="let face of order.faces,let i2 = index">
+              <tr>
+                <td class="border border-primary text-center">{{ face.face }}</td>
+                <td class="border border-primary p-1 text-center">
+                  <input [(ngModel)]="face.qtde" (ngModelChange)="changeCalc(i,i2)"
+                         class="border rounded-sm text-center w-[50px]" type="number">
+                </td>
+                <td class="border border-primary text-center">{{ face.totalFace }}</td>
+                <td class="border border-primary text-center">{{ face.totalValue }}</td>
+              </tr>
+            </ng-container>
+            <tr>
+              <td class="border-primary text-center">Total</td>
+              <td></td>
+              <td class="border-primary text-center">{{ order.totalFace }}</td>
+              <td class="border-primary text-center">{{ order.totalValue }}</td>
+            </tr>
+            </tbody>
+          </table>
+        }
+      </ng-container>
+    </div>
+  </div>
+
+<form [formGroup]="form">
+  <div class="flex w-full gap-[20px] mt-10">
+    <mat-form-field class="flex-3">
+      <mat-label>Nome</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="flex-2">
+      <mat-label>CPF</mat-label>
+      <input formControlName="document" matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-[20px]">
+
+    <mat-form-field class="flex-2">
+      <mat-label>E-mail</mat-label>
+      <input formControlName="email" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="flex-2">
+      <mat-label>Celular</mat-label>
+      <input formControlName="phone" matInput>
+    </mat-form-field>
+  </div>
+
+  <button mat-flat-button>Revisar Pedidos</button>
+</form>
+
+
 </div>

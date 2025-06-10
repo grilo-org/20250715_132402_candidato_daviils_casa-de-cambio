@@ -54,10 +54,9 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const coins = computed(() => this.orderService.getCoinsSignal()());
-    if (coins() != null) {
-      this.coins = coins()!;
-      this.completeItens();
+    const order = localStorage.getItem('order');
+    if (order != null) {
+      this.completeItems();
     } else {
       this.getCoins();
     }
@@ -78,20 +77,22 @@ export class OrderComponent implements OnInit {
           this.items!.push(item);
         });
       }, error: () => {
-        const coins = computed(() => this.orderService.getCoinsSignal()());
-        if (coins() != null) {
-          this.coins = coins()!;
-          this.completeItens();
-        }
+
       }
     });
   }
 
+  clearOrder(): void {
+    localStorage.removeItem('coin');
+    localStorage.removeItem('order');
+    this.getCoins();
+  }
 
-  completeItens() {
-    const order = computed(() => this.orderService.getOrderSignal()());
-    if (order() != null) {
-      this.orders = order()!;
+
+  completeItems() {
+    const or = localStorage.getItem('order');
+    if (or != null) {
+      this.orders = JSON.parse(or!);
       this.form.setValue({
         name: this.orders.name,
         document: this.orders.document,
@@ -99,6 +100,11 @@ export class OrderComponent implements OnInit {
         phone: this.orders.phone,
       })
       this.items = this.orders?.items ?? [];
+    }
+
+    const coin = localStorage.getItem('coins');
+    if (coin != null) {
+      this.coins = JSON.parse(coin!);
     }
   }
 
@@ -136,6 +142,7 @@ export class OrderComponent implements OnInit {
 
     this.orders = {...this.form.value} as Order;
     this.orders.items = this.items;
+    this.orderService.updateCoins(this.coins);
     this.orderService.updateOrder(this.orders);
     this.router.navigate(['/revisao']);
 

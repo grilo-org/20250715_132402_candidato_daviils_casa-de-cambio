@@ -59,12 +59,16 @@ export class ReviewComponent implements OnInit {
 
           this.items.push(it);
         })
+      } else {
+        this.router.navigate(['/pedido']);
       }
     }
   }
 
   onSave() {
     this.alertService.showSuccess('O pedido foi finalizado com sucesso.', 'Sucesso!');
+    localStorage.removeItem('coins');
+    localStorage.removeItem('order');
     this.router.navigate(['/']);
   }
 }

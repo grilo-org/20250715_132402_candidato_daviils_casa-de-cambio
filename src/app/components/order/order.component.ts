@@ -1,7 +1,7 @@
 import {Component, computed, OnInit} from '@angular/core';
 import {CoinService} from '../../core/services/coin.service';
 import {Coin, Coins} from '../../core/model/coin';
-import {NgClass, NgForOf} from '@angular/common';
+import {CurrencyPipe, NgClass, NgForOf} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -10,6 +10,7 @@ import {AlertService} from '../../core/services/alert.service';
 import {OrderService} from '../../core/services/order.service';
 import {Router, RouterLink} from '@angular/router';
 import {Items, Order} from '../../core/model/order';
+import {NgxMaskDirective} from 'ngx-mask';
 
 @Component({
   selector: 'app-order',
@@ -19,7 +20,9 @@ import {Items, Order} from '../../core/model/order';
     FormsModule,
     NgClass,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    CurrencyPipe
   ],
   providers: [
     CoinService,

@@ -38,15 +38,15 @@
                     <input [(ngModel)]="face.qtde" (ngModelChange)="changeCalc(i,i2)"
                            class="border rounded-sm text-center w-[50px]" type="number">
                   </td>
-                  <td class="border border-primary text-center">{{ face.totalFace }}</td>
-                  <td class="border border-primary text-center">{{ face.totalValue }}</td>
+                  <td class="border border-primary text-center">{{ face.totalFace | currency }}</td>
+                  <td class="border border-primary text-center">{{ face.totalValue | currency }}</td>
                 </tr>
               }
             <tr>
               <td class="border-primary text-center">Total</td>
               <td></td>
-              <td class="border-primary text-center">{{ order.totalFace }}</td>
-              <td class="border-primary text-center">{{ order.totalValue }}</td>
+              <td class="border-primary text-center">{{ order.totalFace | currency }}</td>
+              <td class="border-primary text-center">{{ order.totalValue | currency }}</td>
             </tr>
             </tbody>
           </table>
@@ -65,7 +65,7 @@
 
       <mat-form-field class="flex-2">
         <mat-label>CPF</mat-label>
-        <input formControlName="document" matInput>
+        <input formControlName="document"  mask="000.000.000-00" matInput>
         <mat-error>Campo obrigatório.</mat-error>
       </mat-form-field>
     </div>
@@ -80,7 +80,7 @@
 
       <mat-form-field class="flex-2">
         <mat-label>Celular</mat-label>
-        <input formControlName="phone" matInput>
+        <input formControlName="phone" mask="(00) 00000-0000" matInput>
         <mat-error>Campo obrigatório.</mat-error>
       </mat-form-field>
     </div>

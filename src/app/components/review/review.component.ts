@@ -4,13 +4,17 @@ import {Router, RouterLink} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Items, Order} from '../../core/model/order';
 import {AlertService} from '../../core/services/alert.service';
+import {CurrencyPipe} from '@angular/common';
+import {NgxMaskPipe} from 'ngx-mask';
 
 @Component({
   selector: 'app-review',
   imports: [
     MatButton,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CurrencyPipe,
+    NgxMaskPipe
   ],
   templateUrl: './review.component.html',
   standalone: true,

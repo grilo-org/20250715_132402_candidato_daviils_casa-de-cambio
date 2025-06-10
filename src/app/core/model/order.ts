@@ -1,8 +1,8 @@
 export class Order {
-  name?: string
-  document?: string
-  email?: number
-  phone?: number
+  name!: string
+  document!: string
+  email!: string
+  phone!: string
   items?: Items[]
 
   constructor() {

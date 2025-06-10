@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main.component';
+import {ReviewComponent} from '../../components/review/review.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'pedido',
         loadComponent: () => import('../../components/order/order.component').then(m => m.OrderComponent)
+      },
+      {
+        path: 'revisao',
+        loadComponent: () => import('../../components/review/review.component').then(m => m.ReviewComponent)
       },
     ]
   }

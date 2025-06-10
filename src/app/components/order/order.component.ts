@@ -127,7 +127,6 @@ export class OrderComponent implements OnInit {
     })
 
     if (total < 100.00) {
-      alert(total)
       this.alertService.showWarning('O pedido deve ter o mínimo de R$ 100,00 (cem reais) para ser válido.', 'Atenção!');
       return;
     }

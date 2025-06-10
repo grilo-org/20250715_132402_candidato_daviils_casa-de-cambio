@@ -15,8 +15,9 @@ export class OrderService {
     });
   }
 
-  updateCoins(order: Coin[]) {
-    this.coinsSignal.set(order);
+  updateCoins(coins: Coin[]) {
+    localStorage.setItem('coins', JSON.stringify(coins));
+    this.coinsSignal.set(coins);
   }
 
   getCoinsSignal(): Signal<Coin[] | null> {
@@ -24,6 +25,7 @@ export class OrderService {
   }
 
   updateOrder(order: Order) {
+    localStorage.setItem('order', JSON.stringify(order));
     this.orderSignal.set(order);
   }
 

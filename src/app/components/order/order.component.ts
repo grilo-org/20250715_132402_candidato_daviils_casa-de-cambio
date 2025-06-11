@@ -54,12 +54,15 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const order = localStorage.getItem('order');
-    if (order != null) {
-      this.completeItems();
-    } else {
-      this.getCoins();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const order = localStorage.getItem('order');
+      if (order != null) {
+        this.completeItems();
+      } else {
+        this.getCoins();
+      }
     }
+
   }
 
   getCoins() {
